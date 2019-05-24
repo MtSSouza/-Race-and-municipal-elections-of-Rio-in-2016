@@ -18,7 +18,7 @@ library(rgdal)
 # Função "readOGR" para criar um objeto com o mapa (o shp) a ser utilizado
 # nome do objeto <- funcao("nome da pasta", "nome do arquivo shp")
 
-BairrosRIO <- readOGR("Limites_Bairros", "Limite_Bairro")
+BairrosRIO <- readOGR("Limite_Bairro", "Limite_Bairro")
 
 plot(BairrosRIO)      # plota o mapa do Brasil
 
@@ -40,4 +40,9 @@ spplot(dadosMapaRio, "Branca")
 spplot(dadosMapaRio, "Branca", col.regions=grey.colors(100))
 
 Votos_zona <- read.csv2(file.choose(),sep=";",dec=",")
-Votos_zona_ver <- data.frame(subset(Votos_zona, DS_CARGO == "Vereador"))
+Votos_zona_clean <- Votos_zona[,-c(1:14,17, 19:21, 23:24, 26:29, 31:37)]
+Votos_zona_ver <- data.frame(subset(Votos_zona_clean, DS_CARGO == "Vereador"))
+Votos_zona_rj <- data.frame(subset(Votos_zona_ver, NM_MUNICIPIO == "RIO DE JANEIRO"))
+Votos_zona_fin <- data.frame(subset(Votos_zona_rj, DS_SITUACAO_CANDIDATURA == "APTO"))
+
+write.csv2(Votos_zona_fin, "C:/Users/b35489/Documents/GitHub/-Race-and-municipal-elections-of-Rio-in-2016/votos_zona.csv")
