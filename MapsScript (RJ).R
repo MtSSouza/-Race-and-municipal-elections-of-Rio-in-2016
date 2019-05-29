@@ -40,7 +40,7 @@ spplot(dadosMapaRio, "Branca")
 spplot(dadosMapaRio, "Branca", col.regions=grey.colors(100))
 
 Votos_zona <- read.csv2(file.choose(),sep=";",dec=",")
-Votos_zona_clean <- Votos_zona[,-c(1:14,17, 19:21, 23:24, 26:29, 31:37)]
+Votos_zona_clean <- Votos_zona[,-c(1:14,17, 19:20, 22, 23:24, 26:29, 31:37)]
 Votos_zona_ver <- data.frame(subset(Votos_zona_clean, DS_CARGO == "Vereador"))
 Votos_zona_rj <- data.frame(subset(Votos_zona_ver, NM_MUNICIPIO == "RIO DE JANEIRO"))
 Votos_zona_fin <- data.frame(subset(Votos_zona_rj, DS_SITUACAO_CANDIDATURA == "APTO"))
